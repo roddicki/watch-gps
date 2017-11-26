@@ -24,7 +24,7 @@
 </div>
 
 <script>
-var id, target, options;
+var options;
 
 function success(pos) {
   var crd = pos.coords;
@@ -38,11 +38,12 @@ function error(err) {
 
 options = {
   enableHighAccuracy: false,
-  timeout: 5000,
+  timeout: 200,
   maximumAge: 0
 };
 
-id = navigator.geolocation.watchPosition(success, error, options);
+navigator.geolocation.watchPosition(success, error, options);
+
 </script>
 </body>
 </html>
