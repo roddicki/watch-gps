@@ -18,17 +18,21 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-12">
-      <h3>Watch GPS position constantly</h3>
-      <p id="demo">Your GPS position</p>
+      <h3>Watch GPS position constantly with 'watchPosition'</h3>
+      <p id="watch-demo">Your GPS position</p>
+    </div>
+    <div class="col-sm-12">
+      <h3>Watch GPS position constantly with 'getCurrentPosition' and setInterval (hack)</h3>
+      <p id="getcurr-demo">Your GPS position</p>
     </div>
 </div>
 
 <script>
 var options;
 
-function success(pos) {
+function watchSuccess(pos) {
   var crd = pos.coords;
-  document.getElementById('demo').innerHTML = "latitude: " +crd.latitude+ "<br>longitude: " +crd.longitude;
+  document.getElementById('watch-demo').innerHTML = "latitude: " +crd.latitude+ "<br>longitude: " +crd.longitude;
 }
 
 function error(err) {
@@ -38,11 +42,22 @@ function error(err) {
 
 options = {
   enableHighAccuracy: false,
-  timeout: 200,
+  timeout: 500,
   maximumAge: 0
 };
 
-navigator.geolocation.watchPosition(success, error, options);
+navigator.geolocation.watchPosition(watchSuccess, error, options);
+
+function getCurrSuccess(pos) {
+  var crd = pos.coords;
+  document.getElementById('getcurr-demo').innerHTML = "latitude: " +crd.latitude+ "<br>longitude: " +crd.longitude;
+}
+
+setInterval(function() {
+    navigator.geolocation.getCurrentPosition(getCurrSuccess, error);
+    console.log('running setInterval');
+  }, 
+  500);
 
 </script>
 </body>
