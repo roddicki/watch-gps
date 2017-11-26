@@ -18,9 +18,8 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-12">
-      <h3>GPS Watch heading</h3>
-      <button class="btn btn-primary" onclick="getLocation()">Try It</button>
-      <p id="demo">test</p>
+      <h3>Watch GPS position constantly</h3>
+      <p id="demo">Your GPS position</p>
     </div>
 </div>
 
@@ -37,6 +36,8 @@ function showPosition(position) {
     x.innerHTML = "Latitude: " + position.coords.latitude + 
     "<br>Longitude: " + position.coords.longitude; 
 }
+
+getLocation();
 </script>
 </body>
 </html>
